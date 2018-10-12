@@ -1,12 +1,20 @@
-interface Person {
-    firstName: string;
-    lastName: string;
+let inputElement: HTMLInputElement = <HTMLInputElement>document.getElementById("input");
+let toGramButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("toGramButton");
+let toOuncesButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("toOuncesButton");
+let outputElement: HTMLOutputElement = <HTMLOutputElement> document.getElementById("output");
+
+toGramButton.addEventListener("click", ConvertToGram);
+
+function ConvertToGram(): void {
+    var convertedValue = parseInt(inputElement.value) * 28.34952;
+    outputElement.innerHTML = inputElement.value + " ounces = " + convertedValue + " grams";
+    inputElement.value = null;
 }
 
-function greeter(person: Person): string {
-    return "Hello, " + person.firstName + " " + person.lastName;
-}
-let user: Person = { firstName: "John", lastName: "Doe" };
+toOuncesButton.addEventListener("click", ConvertToOunces);
 
-let element: HTMLDivElement = <HTMLDivElement> document.getElementById("content");
-element.innerHTML = greeter(user);
+function ConvertToOunces(): void{
+    var convertedValue = parseInt(inputElement.value) / 28.34952;
+    outputElement.innerHTML = inputElement.value + " grams = " + convertedValue + " ounces";
+    inputElement.value = null;
+}
